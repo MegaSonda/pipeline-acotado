@@ -1,0 +1,9 @@
+{
+	"name": "EDWAgreement",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2a0afa7d-5ffa-41da-ab09-69fdfc30dfcf",
+		"tenantId": "02625676-3227-440a-9c68-bb6d29de4206"
+	}
+}

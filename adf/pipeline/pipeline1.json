@@ -1,0 +1,178 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"description": "Pipeline con actividades reales (Lookup simulando lógica)",
+		"activities": [
+			{
+				"name": "Run_EDW_Agreement",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource"
+					},
+					"dataset": {
+						"referenceName": "DummyDataset",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Run_J139_Transbk_Mcf_Cuentas",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Run_EDW_Agreement",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource"
+					},
+					"dataset": {
+						"referenceName": "DummyDataset",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Run_J139_Transbk_Mcf_Extraccion_Hash",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Run_EDW_Agreement",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource"
+					},
+					"dataset": {
+						"referenceName": "DummyDataset",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Run_Account_Abuse_History_FLoad",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Run_EDW_Agreement",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource"
+					},
+					"dataset": {
+						"referenceName": "DummyDataset",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Run_Account_Card_FLoad",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Run_EDW_Agreement",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource"
+					},
+					"dataset": {
+						"referenceName": "DummyDataset",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Run_Account_Card_Income_FLoad",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Run_EDW_Agreement",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource"
+					},
+					"dataset": {
+						"referenceName": "DummyDataset",
+						"type": "DatasetReference"
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-06-18T18:14:59Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
