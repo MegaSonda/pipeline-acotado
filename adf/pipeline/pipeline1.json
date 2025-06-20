@@ -1,11 +1,11 @@
 {
 	"name": "pipeline1",
 	"properties": {
-		"description": "Pipeline con actividades reales (Lookup simulando lógica)",
+		"description": "Pipeline con tipos de actividad ajustados y relaciones reales entre jobs",
 		"activities": [
 			{
 				"name": "Run_EDW_Agreement",
-				"type": "Lookup",
+				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -19,6 +19,7 @@
 					"source": {
 						"type": "JsonSource"
 					},
+					"enableStaging": false,
 					"dataset": {
 						"referenceName": "DummyDataset",
 						"type": "DatasetReference"
@@ -27,7 +28,7 @@
 			},
 			{
 				"name": "Run_J139_Transbk_Mcf_Cuentas",
-				"type": "Lookup",
+				"type": "Copy",
 				"dependsOn": [
 					{
 						"activity": "Run_EDW_Agreement",
@@ -48,6 +49,10 @@
 					"source": {
 						"type": "JsonSource"
 					},
+					"sink": {
+						"type": "JsonSink"
+					},
+					"enableStaging": false,
 					"dataset": {
 						"referenceName": "DummyDataset",
 						"type": "DatasetReference"
@@ -56,7 +61,7 @@
 			},
 			{
 				"name": "Run_J139_Transbk_Mcf_Extraccion_Hash",
-				"type": "Lookup",
+				"type": "Copy",
 				"dependsOn": [
 					{
 						"activity": "Run_EDW_Agreement",
@@ -77,6 +82,7 @@
 					"source": {
 						"type": "JsonSource"
 					},
+					"enableStaging": false,
 					"dataset": {
 						"referenceName": "DummyDataset",
 						"type": "DatasetReference"
@@ -85,7 +91,7 @@
 			},
 			{
 				"name": "Run_Account_Abuse_History_FLoad",
-				"type": "Lookup",
+				"type": "Copy",
 				"dependsOn": [
 					{
 						"activity": "Run_EDW_Agreement",
@@ -106,6 +112,10 @@
 					"source": {
 						"type": "JsonSource"
 					},
+					"sink": {
+						"type": "JsonSink"
+					},
+					"enableStaging": false,
 					"dataset": {
 						"referenceName": "DummyDataset",
 						"type": "DatasetReference"
@@ -114,7 +124,7 @@
 			},
 			{
 				"name": "Run_Account_Card_FLoad",
-				"type": "Lookup",
+				"type": "Copy",
 				"dependsOn": [
 					{
 						"activity": "Run_EDW_Agreement",
@@ -135,6 +145,10 @@
 					"source": {
 						"type": "JsonSource"
 					},
+					"sink": {
+						"type": "JsonSink"
+					},
+					"enableStaging": false,
 					"dataset": {
 						"referenceName": "DummyDataset",
 						"type": "DatasetReference"
@@ -143,7 +157,7 @@
 			},
 			{
 				"name": "Run_Account_Card_Income_FLoad",
-				"type": "Lookup",
+				"type": "Copy",
 				"dependsOn": [
 					{
 						"activity": "Run_EDW_Agreement",
@@ -164,6 +178,10 @@
 					"source": {
 						"type": "JsonSource"
 					},
+					"sink": {
+						"type": "JsonSink"
+					},
+					"enableStaging": false,
 					"dataset": {
 						"referenceName": "DummyDataset",
 						"type": "DatasetReference"
@@ -171,8 +189,7 @@
 				}
 			}
 		],
-		"annotations": [],
-		"lastPublishTime": "2025-06-18T18:14:59Z"
+		"annotations": []
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
